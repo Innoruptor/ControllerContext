@@ -1,29 +1,56 @@
 # ControllerContext
 
-ControllerContext solves the problem of passing data back and forth between iOS View Controllers.  The ControllerContext object manages the state between View Controllers, reducing the boilerplate code necessary to wire screens together.
+ControllerContext solves the problem of passing data back and forth between iOS view controllers.  The ControllerContext object manages the state between view controllers, reducing the boilerplate code necessary to wire screens together.
 
 # The problem
 
-The state of the art today for passing data between view controllers is to create properties or setters on the next view controller to display and to use the delegate pattern for passing data back to the originating View Controller.  
+The state of the art today for passing data between view controllers is to create properties or setters on the next view controller to display and to use the delegate pattern for passing data back to the originating view controller.  
 
-Problems with the approach:
-- writing code for each data element carried forward
-- creating delegate code to pass data elements to the originating View Controller
-- difficult to pass data back to the originating View Controller with a multi-level workflow
-- no standard way to pass app specific data to every View Controller
+## Apple’s Perspective
+
+The following best practices come directly from Apple’s article “[Coordinating Efforts Between View Controllers].”
+
+1. A destination view controller’s references to app data should come from the source view controller unless the destination view controller represents a self-contained (and therefore self-configuring) view controller. 
+
+2. Perform as much configuration as possible using Interface Builder, rather than configuring your controller programmatically in your code. 
+
+3. Always use a delegate to communicate information back to other controllers. Your content view controller should never need to know the class of the source view controller or any controllers it doesn’t create. 
+
+4. Avoid unnecessary connections to objects external to your view controller. Each connection represents a dependency that makes it harder to change your app design.
+
+## Problems with the approach
+
+- code is required for each data element carried forward
+- delegate code is required to pass data from destination view controller back to the source view controller
+- it is difficult to pass data back to the originating source view controller with a multi-level workflow
+- there is no standard way to pass app specific data to every view controller
+- there is tight coupling between view controllers
 
 # The Solution
 
-What if you could have similar flexibility to how data is passed between Web pages with the ability to control the scope of the data passed around?  The ControllerContext object gives you this power and control for passing data back and forth between View Controllers.
+What if you could have similar flexibility to how data is passed between Web pages with the ability to control the scope of the data passed around?  The ControllerContext object gives you this power and control for passing data back and forth between view controllers.
 
-Imagine you have a login View Controller that needs to return the userId.  The INNControllerContext instance is created in the MainVC class and passed to the SignupVC instance by calling the method INN_setContext: on the SignupVC View Controller.  At this point both the MainVC and SignupVC have a reference to the same INNControllerContext instance.
+The magic behind the ControllerContext is the combination of storing key/object pairs of data with the ability to control the scope of the data.
+
+Imagine you have a login view controller that needs to return the userId.  The INNControllerContext instance is created in the MainVC class and passed to the SignupVC instance by calling the method INN_setContext: on the SignupVC view controller.  At this point both the MainVC and SignupVC have a reference to the same INNControllerContext instance.
 
 ![Example1](images/MainVCExample1.png)
 
-After the user enters a username and password combination the userId could be returned from a remote service call validating the username and password combination.  The SignupVC sets the userId value in the INNControllerContext instance.  Since the same INNControllerContext instance is shared between the MainVC and SignupVC View Controllers the MainVC has access to the userId when viewWillAppear: fires.  This provides MainVC complete control over when to make UI changes based on the current values stored in the INNControllerContext instance.
+After the user enters a username and password combination, the userId could be returned from a remote service call, validating the username and password.  The SignupVC sets the userId value in the INNControllerContext instance.  Since the same INNControllerContext instance is shared between the MainVC and SignupVC view controllers, the MainVC has access to the userId when viewWillAppear: fires.  This provides MainVC complete control over when to make UI changes based on the current values stored in the INNControllerContext instance.
 
 ![Example2](images/MainVCExample2.png)
 
+### Addressing Apple’s Best Practices with ControllerContext
+
+1. “A destination view controller’s reference to app data should come from the source view controller.”  This is accomplished by passing forward a single reference to a ControllerContext.
+
+2. “Perform as much configuration as possible using Interface Builder, rather than configuring your controller programmatically in your code. “  The ControllerContext approach focuses on simplifying configuration in code.
+
+3. “Your content view controller should never need to know the class of the source view controller or any controllers it doesn’t create.”   By passing a ControllerContext object forward, the destination view controller doesn’t need to know the class of the source view controller. 
+
+4. “Avoid unnecessary connections to objects external to your view controller.”   The only compile time dependency between view controllers is the existence of the ControllerContext.  References to external objects are located in the internal logic of the view controller.  This enables you to more easily change your app design.
+
+# Implementation
 
 ## The ControllerContext Object
 
@@ -112,7 +139,7 @@ userId = [context2 objectForKey:@"userId" withContextName:@"app"];  // object re
 
 ## Using ControllerContext with View Controllers
 
-The category UIViewController (INNControllerContext) is provided to manage the INNControllerContext instance associated with a View Controller instance.   You can use the methods INN_setContext: and INN_context to set and retrieve the INNControllerContext instance.
+The category UIViewController (INNControllerContext) is provided to manage the INNControllerContext instance associated with a view controller instance.   You can use the methods INN_setContext: and INN_context to set and retrieve the INNControllerContext instance.
 
 ```objective-c
 @interface UIViewController (INNControllerContext)
@@ -124,7 +151,7 @@ The category UIViewController (INNControllerContext) is provided to manage the I
 @end
 ```
 
-Below is an example of creating the first INNControllerContext instance and passing it forward to the next View Controller.
+Below is an example of creating the first INNControllerContext instance and passing it forward to the next view controller.
 
 ```objective-c
 ColorsVC *vc = [[ColorsVC alloc]init];
@@ -146,7 +173,7 @@ sizeContext = [[INNControllerContext alloc] initWithInnerContext:self.INN_contex
 [self.navigationController pushViewController:vc animated:YES];
 ```
 
-The suggested location to retrieve values from the INNControllerContext is in the viewWillAppear: method.  This enables the evaluation of the INNControllerContext data before the View Controller is displayed.
+The suggested location to retrieve values from the INNControllerContext is in the viewWillAppear: method.  This enables the evaluation of the INNControllerContext data before the view controller is displayed.
 
 ```objective-c
 -(void) viewWillAppear:(BOOL)animated{
@@ -192,6 +219,13 @@ ControllerContext is reached
 
 Have a look at the /Example folder.
 
+- Single Screen Example (1) – passes a data back to source view controller
+- Single Screen Example (2) – passes a data back to source view controller from a workflow
+- Shared Data Example – shares data between tabs and returns tab selected back to source view controller
+
+![Example1](images/ControllerContextScreenGrab.gif)
+
+
 ## Requirements
 
 Designed for iOS 6.0 and above, but I see no reason this shouldn't work with OSX 10.8 and above.
@@ -206,8 +240,6 @@ CocoaPods coming soon...
 
 For now drop the files in the Classes folder into your project.
 
-## TODO
-
 ## Author
 
 Michael Raber, michael@innoruptor.com, [@michaelraber]
@@ -217,3 +249,4 @@ Michael Raber, michael@innoruptor.com, [@michaelraber]
 ControllerContext is available under the BSD license. See the LICENSE file for more info.
 
 [@michaelraber]:http://twitter.com/michaelraber
+[Coordinating Efforts Between View Controllers]:https://developer.apple.com/library/IOS/featuredarticles/ViewControllerPGforiPhoneOS/ManagingDataFlowBetweenViewControllers/ManagingDataFlowBetweenViewControllers.html

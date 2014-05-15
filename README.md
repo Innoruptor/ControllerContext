@@ -242,11 +242,12 @@ For now drop the files in the Classes folder into your project.
 
 ## Author
 
-Michael Raber, michael@innoruptor.com, [@michaelraber]
+Michael Raber, michael@innoruptor.com, [@michaelraber], [@innoruptor]
 
 ## License
 
 ControllerContext is available under the BSD license. See the LICENSE file for more info.
 
 [@michaelraber]:http://twitter.com/michaelraber
+[@innoruptor]:http://twitter.com/innoruptor
 [Coordinating Efforts Between View Controllers]:https://developer.apple.com/library/IOS/featuredarticles/ViewControllerPGforiPhoneOS/ManagingDataFlowBetweenViewControllers/ManagingDataFlowBetweenViewControllers.html

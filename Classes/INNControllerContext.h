@@ -8,11 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
+typedef void (^BlockReference)(id object);
+
 @interface INNControllerContext : NSObject{
   NSString *contextName;
   NSMutableDictionary *dictionary;
   INNControllerContext *innerContext;
   NSObject *lock;
+  NSMutableDictionary *validPropertySetters;
+  NSMutableDictionary *validPropertyGetters;
+  NSMutableDictionary *callbackDictionary;
 }
 
 -(id) initWithName:(NSString *)name;
@@ -28,6 +33,10 @@
 -(void) setObject:(id)object forKey:(NSString*)key;
 -(id) objectForKey:(NSString *)key;
 -(void) removeObjectForKey:(NSString *)key;
+
+-(void) registerCallback:(BlockReference)block forKey:(NSString *)key withObject:(id)object;
+-(void) removeCallbacksForObject:(id)object;
+-(void) removeAllCallbacks;
 
 -(NSArray *) allKeys;
 

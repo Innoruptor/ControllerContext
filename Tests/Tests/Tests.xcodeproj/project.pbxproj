@@ -18,9 +18,12 @@
 		CC4262451924202800F3C5EB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC42622A1924202800F3C5EB /* Foundation.framework */; };
 		CC4262461924202800F3C5EB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC42622E1924202800F3C5EB /* UIKit.framework */; };
 		CC42624E1924202800F3C5EB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CC42624C1924202800F3C5EB /* InfoPlist.strings */; };
-		CC42625E1924205B00F3C5EB /* INNControllerContext.m in Sources */ = {isa = PBXBuildFile; fileRef = CC42625B1924205B00F3C5EB /* INNControllerContext.m */; };
-		CC42625F1924205B00F3C5EB /* UIViewController+INNControllerContext.m in Sources */ = {isa = PBXBuildFile; fileRef = CC42625D1924205B00F3C5EB /* UIViewController+INNControllerContext.m */; };
 		CC4262611924210300F3C5EB /* ControllerContextTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CC4262601924210300F3C5EB /* ControllerContextTests.m */; };
+		CC4262B319279B5300F3C5EB /* INNControllerContext.m in Sources */ = {isa = PBXBuildFile; fileRef = CC4262B019279B5300F3C5EB /* INNControllerContext.m */; };
+		CC4262B419279B5300F3C5EB /* UIViewController+INNControllerContext.m in Sources */ = {isa = PBXBuildFile; fileRef = CC4262B219279B5300F3C5EB /* UIViewController+INNControllerContext.m */; };
+		CC4262F81928E0F000F3C5EB /* TestContext1.m in Sources */ = {isa = PBXBuildFile; fileRef = CC4262F71928E0F000F3C5EB /* TestContext1.m */; };
+		CC4262FA1929600B00F3C5EB /* PropertyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CC4262F91929600B00F3C5EB /* PropertyTests.m */; };
+		CC4262FC192961FF00F3C5EB /* NonNamespacedTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CC4262FB192961FF00F3C5EB /* NonNamespacedTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,11 +52,15 @@
 		CC4262431924202800F3C5EB /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		CC42624B1924202800F3C5EB /* TestsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TestsTests-Info.plist"; sourceTree = "<group>"; };
 		CC42624D1924202800F3C5EB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		CC42625A1924205B00F3C5EB /* INNControllerContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INNControllerContext.h; sourceTree = "<group>"; };
-		CC42625B1924205B00F3C5EB /* INNControllerContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INNControllerContext.m; sourceTree = "<group>"; };
-		CC42625C1924205B00F3C5EB /* UIViewController+INNControllerContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+INNControllerContext.h"; sourceTree = "<group>"; };
-		CC42625D1924205B00F3C5EB /* UIViewController+INNControllerContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+INNControllerContext.m"; sourceTree = "<group>"; };
 		CC4262601924210300F3C5EB /* ControllerContextTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ControllerContextTests.m; sourceTree = "<group>"; };
+		CC4262AF19279B5300F3C5EB /* INNControllerContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = INNControllerContext.h; path = ../../../Classes/INNControllerContext.h; sourceTree = "<group>"; };
+		CC4262B019279B5300F3C5EB /* INNControllerContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = INNControllerContext.m; path = ../../../Classes/INNControllerContext.m; sourceTree = "<group>"; };
+		CC4262B119279B5300F3C5EB /* UIViewController+INNControllerContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+INNControllerContext.h"; path = "../../../Classes/UIViewController+INNControllerContext.h"; sourceTree = "<group>"; };
+		CC4262B219279B5300F3C5EB /* UIViewController+INNControllerContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+INNControllerContext.m"; path = "../../../Classes/UIViewController+INNControllerContext.m"; sourceTree = "<group>"; };
+		CC4262F61928E0F000F3C5EB /* TestContext1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestContext1.h; path = ../../../../ControllerContext.candelete/Tests/Tests/TestsTests/TestContext1.h; sourceTree = "<group>"; };
+		CC4262F71928E0F000F3C5EB /* TestContext1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestContext1.m; path = ../../../../ControllerContext.candelete/Tests/Tests/TestsTests/TestContext1.m; sourceTree = "<group>"; };
+		CC4262F91929600B00F3C5EB /* PropertyTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PropertyTests.m; path = ../../../../ControllerContext.candelete/Tests/Tests/TestsTests/PropertyTests.m; sourceTree = "<group>"; };
+		CC4262FB192961FF00F3C5EB /* NonNamespacedTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NonNamespacedTests.m; path = ../../../../ControllerContext.candelete/Tests/Tests/TestsTests/NonNamespacedTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +144,10 @@
 			isa = PBXGroup;
 			children = (
 				CC4262601924210300F3C5EB /* ControllerContextTests.m */,
+				CC4262F91929600B00F3C5EB /* PropertyTests.m */,
+				CC4262FB192961FF00F3C5EB /* NonNamespacedTests.m */,
+				CC4262F61928E0F000F3C5EB /* TestContext1.h */,
+				CC4262F71928E0F000F3C5EB /* TestContext1.m */,
 				CC42624A1924202800F3C5EB /* Supporting Files */,
 			);
 			path = TestsTests;
@@ -154,10 +165,10 @@
 		CC4262591924203700F3C5EB /* ControllerContext */ = {
 			isa = PBXGroup;
 			children = (
-				CC42625A1924205B00F3C5EB /* INNControllerContext.h */,
-				CC42625B1924205B00F3C5EB /* INNControllerContext.m */,
-				CC42625C1924205B00F3C5EB /* UIViewController+INNControllerContext.h */,
-				CC42625D1924205B00F3C5EB /* UIViewController+INNControllerContext.m */,
+				CC4262AF19279B5300F3C5EB /* INNControllerContext.h */,
+				CC4262B019279B5300F3C5EB /* INNControllerContext.m */,
+				CC4262B119279B5300F3C5EB /* UIViewController+INNControllerContext.h */,
+				CC4262B219279B5300F3C5EB /* UIViewController+INNControllerContext.m */,
 			);
 			name = ControllerContext;
 			sourceTree = "<group>";
@@ -257,9 +268,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CC42625F1924205B00F3C5EB /* UIViewController+INNControllerContext.m in Sources */,
+				CC4262B419279B5300F3C5EB /* UIViewController+INNControllerContext.m in Sources */,
 				CC42623B1924202800F3C5EB /* AppDelegate.m in Sources */,
-				CC42625E1924205B00F3C5EB /* INNControllerContext.m in Sources */,
+				CC4262B319279B5300F3C5EB /* INNControllerContext.m in Sources */,
 				CC4262371924202800F3C5EB /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -269,6 +280,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				CC4262611924210300F3C5EB /* ControllerContextTests.m in Sources */,
+				CC4262FA1929600B00F3C5EB /* PropertyTests.m in Sources */,
+				CC4262FC192961FF00F3C5EB /* NonNamespacedTests.m in Sources */,
+				CC4262F81928E0F000F3C5EB /* TestContext1.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -457,6 +471,7 @@
 				CC4262551924202800F3C5EB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CC4262561924202800F3C5EB /* Build configuration list for PBXNativeTarget "TestsTests" */ = {
 			isa = XCConfigurationList;
@@ -465,6 +480,7 @@
 				CC4262581924202800F3C5EB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -14,6 +14,7 @@
 #import "Tab1VC.h"
 #import "Tab2VC.h"
 #import "Tab3VC.h"
+#import "QuantityVC.h"
 
 @interface MainViewVC ()
 
@@ -45,6 +46,28 @@
   
   color = [UIColor blackColor];
   size = @"Choose size";
+  
+  INNControllerContext *context = [self INN_context];
+  
+  [context registerCallback:^(id object) {
+    
+    NSLog(@"callback with Object: %@", object);
+    
+    [object callInternalMethod];
+    
+  } forKey:@"testCallback" withObject:self];
+  
+  [context setObject:@"test data" forKey:@"testCallback"];
+  
+  [context removeCallbacksForObject:self];
+  
+  [context setObject:@"test data 2" forKey:@"testCallback"];
+  
+  NSLog(@"next line");
+}
+
+-(void) callInternalMethod{
+  NSLog(@"cool");
 }
 
 - (void)didReceiveMemoryWarning
@@ -56,7 +79,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 3;
+    return 4;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -87,12 +110,17 @@
     return label;
   }
   else if(section==1){
-    label.text = @" Single Screen Examples";
+    label.text = @" Single Screen Example";
+    
+    return label;
+  }
+  else if(section==2){
+    label.text = @" Shared Data Example";
     
     return label;
   }
   else{
-    label.text = @" Shared Data Example";
+    label.text = @" Context with Properties Example";
     
     return label;
   }
@@ -124,6 +152,12 @@
       if(indexPath.row==0){
         cell.textLabel.text = [NSString stringWithFormat:@"Tab selected [%@]",
                                tabSelected==nil ? @"None" : tabSelected];
+        cell.textLabel.textColor = [UIColor blackColor];
+      }
+    }
+    else if(indexPath.section==3){
+      if(indexPath.row==0){
+        cell.textLabel.text = [NSString stringWithFormat:@"Quantity: %i", quantity];
         cell.textLabel.textColor = [UIColor blackColor];
       }
     }
@@ -186,6 +220,20 @@
       tabVC.delegate = self;
       
       [self presentViewController:tabVC animated:YES completion:nil];
+    }
+  }
+  else if(indexPath.section==3){
+    if(indexPath.row==0){
+      QuantityVC *vc = [[QuantityVC alloc]init];
+      
+      quantityContext = [[QuantityContext alloc] initWithName:@"quantity" innerContext:self.INN_context];
+      
+      //
+      // pass the quantityContext to the next view controller
+      //
+      [vc INN_setContext:quantityContext];
+      
+      [self.navigationController pushViewController:vc animated:YES];
     }
   }
 }
@@ -252,6 +300,12 @@
       
       [self.tableView reloadData];
     }
+  }
+  
+  if(quantityContext!=nil){
+    quantity = quantityContext.quantity;
+    
+    [self.tableView reloadData];
   }
 }
 

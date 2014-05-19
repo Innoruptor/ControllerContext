@@ -19,8 +19,6 @@
 		CC4261E61923C09900F3C5EB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC4261CE1923C09900F3C5EB /* UIKit.framework */; };
 		CC4261EE1923C09900F3C5EB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CC4261EC1923C09900F3C5EB /* InfoPlist.strings */; };
 		CC4261F01923C09900F3C5EB /* Example1Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = CC4261EF1923C09900F3C5EB /* Example1Tests.m */; };
-		CC4261FE1923C0C200F3C5EB /* INNControllerContext.m in Sources */ = {isa = PBXBuildFile; fileRef = CC4261FB1923C0C200F3C5EB /* INNControllerContext.m */; };
-		CC4261FF1923C0C200F3C5EB /* UIViewController+INNControllerContext.m in Sources */ = {isa = PBXBuildFile; fileRef = CC4261FD1923C0C200F3C5EB /* UIViewController+INNControllerContext.m */; };
 		CC4262011923C0D200F3C5EB /* tab_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = CC4262001923C0D200F3C5EB /* tab_icon.png */; };
 		CC4262151923C3C500F3C5EB /* ColorsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CC4262041923C3C500F3C5EB /* ColorsVC.m */; };
 		CC4262161923C3C500F3C5EB /* ConfirmVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CC4262061923C3C500F3C5EB /* ConfirmVC.m */; };
@@ -31,6 +29,10 @@
 		CC42621B1923C3C500F3C5EB /* Tab3VC.m in Sources */ = {isa = PBXBuildFile; fileRef = CC4262101923C3C500F3C5EB /* Tab3VC.m */; };
 		CC42621C1923C3C500F3C5EB /* WorkflowColorsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CC4262121923C3C500F3C5EB /* WorkflowColorsVC.m */; };
 		CC42621D1923C3C500F3C5EB /* WorkflowSizeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CC4262141923C3C500F3C5EB /* WorkflowSizeVC.m */; };
+		CC4262AD19279B1F00F3C5EB /* INNControllerContext.m in Sources */ = {isa = PBXBuildFile; fileRef = CC4262AA19279B1F00F3C5EB /* INNControllerContext.m */; };
+		CC4262AE19279B1F00F3C5EB /* UIViewController+INNControllerContext.m in Sources */ = {isa = PBXBuildFile; fileRef = CC4262AC19279B1F00F3C5EB /* UIViewController+INNControllerContext.m */; };
+		CC4263011929796600F3C5EB /* QuantityVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CC4263001929796600F3C5EB /* QuantityVC.m */; };
+		CC42630419297A5D00F3C5EB /* QuantityContext.m in Sources */ = {isa = PBXBuildFile; fileRef = CC42630319297A5D00F3C5EB /* QuantityContext.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,10 +62,6 @@
 		CC4261EB1923C09900F3C5EB /* Example1Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Example1Tests-Info.plist"; sourceTree = "<group>"; };
 		CC4261ED1923C09900F3C5EB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CC4261EF1923C09900F3C5EB /* Example1Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Example1Tests.m; sourceTree = "<group>"; };
-		CC4261FA1923C0C200F3C5EB /* INNControllerContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INNControllerContext.h; sourceTree = "<group>"; };
-		CC4261FB1923C0C200F3C5EB /* INNControllerContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INNControllerContext.m; sourceTree = "<group>"; };
-		CC4261FC1923C0C200F3C5EB /* UIViewController+INNControllerContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+INNControllerContext.h"; sourceTree = "<group>"; };
-		CC4261FD1923C0C200F3C5EB /* UIViewController+INNControllerContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+INNControllerContext.m"; sourceTree = "<group>"; };
 		CC4262001923C0D200F3C5EB /* tab_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tab_icon.png; sourceTree = "<group>"; };
 		CC4262031923C3C500F3C5EB /* ColorsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ColorsVC.h; path = classes/ColorsVC.h; sourceTree = "<group>"; };
 		CC4262041923C3C500F3C5EB /* ColorsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ColorsVC.m; path = classes/ColorsVC.m; sourceTree = "<group>"; };
@@ -83,6 +81,14 @@
 		CC4262121923C3C500F3C5EB /* WorkflowColorsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WorkflowColorsVC.m; path = classes/WorkflowColorsVC.m; sourceTree = "<group>"; };
 		CC4262131923C3C500F3C5EB /* WorkflowSizeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WorkflowSizeVC.h; path = classes/WorkflowSizeVC.h; sourceTree = "<group>"; };
 		CC4262141923C3C500F3C5EB /* WorkflowSizeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WorkflowSizeVC.m; path = classes/WorkflowSizeVC.m; sourceTree = "<group>"; };
+		CC4262A919279B1F00F3C5EB /* INNControllerContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = INNControllerContext.h; path = ../../../Classes/INNControllerContext.h; sourceTree = "<group>"; };
+		CC4262AA19279B1F00F3C5EB /* INNControllerContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = INNControllerContext.m; path = ../../../Classes/INNControllerContext.m; sourceTree = "<group>"; };
+		CC4262AB19279B1F00F3C5EB /* UIViewController+INNControllerContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+INNControllerContext.h"; path = "../../../Classes/UIViewController+INNControllerContext.h"; sourceTree = "<group>"; };
+		CC4262AC19279B1F00F3C5EB /* UIViewController+INNControllerContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+INNControllerContext.m"; path = "../../../Classes/UIViewController+INNControllerContext.m"; sourceTree = "<group>"; };
+		CC4262FF1929796600F3C5EB /* QuantityVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuantityVC.h; path = ../../../../ControllerContext.candelete/Example/Example1/Example1/classes/QuantityVC.h; sourceTree = "<group>"; };
+		CC4263001929796600F3C5EB /* QuantityVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QuantityVC.m; path = ../../../../ControllerContext.candelete/Example/Example1/Example1/classes/QuantityVC.m; sourceTree = "<group>"; };
+		CC42630219297A5D00F3C5EB /* QuantityContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuantityContext.h; path = ../../../../ControllerContext.candelete/Example/Example1/Example1/classes/QuantityContext.h; sourceTree = "<group>"; };
+		CC42630319297A5D00F3C5EB /* QuantityContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QuantityContext.m; path = ../../../../ControllerContext.candelete/Example/Example1/Example1/classes/QuantityContext.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,10 +191,10 @@
 		CC4261F91923C0A700F3C5EB /* ControllerContext */ = {
 			isa = PBXGroup;
 			children = (
-				CC4261FA1923C0C200F3C5EB /* INNControllerContext.h */,
-				CC4261FB1923C0C200F3C5EB /* INNControllerContext.m */,
-				CC4261FC1923C0C200F3C5EB /* UIViewController+INNControllerContext.h */,
-				CC4261FD1923C0C200F3C5EB /* UIViewController+INNControllerContext.m */,
+				CC4262A919279B1F00F3C5EB /* INNControllerContext.h */,
+				CC4262AA19279B1F00F3C5EB /* INNControllerContext.m */,
+				CC4262AB19279B1F00F3C5EB /* UIViewController+INNControllerContext.h */,
+				CC4262AC19279B1F00F3C5EB /* UIViewController+INNControllerContext.m */,
 			);
 			name = ControllerContext;
 			sourceTree = "<group>";
@@ -214,6 +220,10 @@
 				CC4262121923C3C500F3C5EB /* WorkflowColorsVC.m */,
 				CC4262131923C3C500F3C5EB /* WorkflowSizeVC.h */,
 				CC4262141923C3C500F3C5EB /* WorkflowSizeVC.m */,
+				CC4262FF1929796600F3C5EB /* QuantityVC.h */,
+				CC4263001929796600F3C5EB /* QuantityVC.m */,
+				CC42630219297A5D00F3C5EB /* QuantityContext.h */,
+				CC42630319297A5D00F3C5EB /* QuantityContext.m */,
 			);
 			name = classes;
 			sourceTree = "<group>";
@@ -314,17 +324,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CC4261FF1923C0C200F3C5EB /* UIViewController+INNControllerContext.m in Sources */,
+				CC42630419297A5D00F3C5EB /* QuantityContext.m in Sources */,
 				CC4262161923C3C500F3C5EB /* ConfirmVC.m in Sources */,
 				CC4261DB1923C09900F3C5EB /* AppDelegate.m in Sources */,
 				CC42621A1923C3C500F3C5EB /* Tab2VC.m in Sources */,
 				CC4262191923C3C500F3C5EB /* Tab1VC.m in Sources */,
-				CC4261FE1923C0C200F3C5EB /* INNControllerContext.m in Sources */,
 				CC4262171923C3C500F3C5EB /* MainViewVC.m in Sources */,
 				CC42621C1923C3C500F3C5EB /* WorkflowColorsVC.m in Sources */,
+				CC4262AE19279B1F00F3C5EB /* UIViewController+INNControllerContext.m in Sources */,
 				CC4262151923C3C500F3C5EB /* ColorsVC.m in Sources */,
+				CC4262AD19279B1F00F3C5EB /* INNControllerContext.m in Sources */,
 				CC4261D71923C09900F3C5EB /* main.m in Sources */,
 				CC42621D1923C3C500F3C5EB /* WorkflowSizeVC.m in Sources */,
+				CC4263011929796600F3C5EB /* QuantityVC.m in Sources */,
 				CC4262181923C3C500F3C5EB /* SizeVC.m in Sources */,
 				CC42621B1923C3C500F3C5EB /* Tab3VC.m in Sources */,
 			);
@@ -523,6 +535,7 @@
 				CC4261F51923C09900F3C5EB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CC4261F61923C09900F3C5EB /* Build configuration list for PBXNativeTarget "Example1Tests" */ = {
 			isa = XCConfigurationList;
@@ -531,6 +544,7 @@
 				CC4261F81923C09900F3C5EB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

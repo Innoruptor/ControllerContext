@@ -33,5 +33,25 @@ static char const * const INNControllerContextKey = "INNControllerContextKey";
   return objc_getAssociatedObject(self, INNControllerContextKey);
 }
 
+#ifdef USE_NON_NAMESPACED_INNCONTROLLERCONTEXT_CATEGORY
+
+// NON-Namespaced Methods, only available if USE_NON_NAMESPACED_INNCONTROLLERCONTEXT_CATEGORY macro has been set
+
+-(id) initWithContext:(INNControllerContext *)context
+{
+  return [self INN_initWithContext:context];
+}
+
+-(void) setContext:(INNControllerContext *)context
+{
+  [self INN_setContext:context];
+}
+
+-(INNControllerContext *)context
+{
+  return [self INN_context];
+}
+
+#endif
 
 @end

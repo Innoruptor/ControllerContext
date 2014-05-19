@@ -8,6 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import "INNControllerContext.h"
+#import "TestContext1.h"
 
 @interface ControllerContextTests : XCTestCase
 
@@ -222,6 +223,87 @@
   XCTAssertTrue([allKeys containsObject:@"K:0:0"], @"key found");
 }
 
+- (void)test12{
+  INNControllerContext *context1 = [[INNControllerContext alloc]initWithName:@"base"];
+  
+  INNControllerContext *context2 = [[INNControllerContext alloc]initWithInnerContext:context1];
+  
+  __block NSString *lastLocation = @"outside block";
+  
+  [context2 registerCallback:^(id object) {
+    lastLocation = @"inside block";
+  } forKey:@"key1" withObject:self];
+  
+  [context2 setObject:@"obj1" forKey:@"key1"];
+  
+  XCTAssertTrue([lastLocation isEqualToString:@"inside block"], @"Block was called");
+}
+
+- (void)test13{
+  INNControllerContext *context1 = [[INNControllerContext alloc]initWithName:@"base"];
+  
+  INNControllerContext *context2 = [[INNControllerContext alloc]initWithInnerContext:context1];
+  
+  __block NSString *lastLocation = @"outside block";
+  
+  [context2 registerCallback:^(id object) {
+    lastLocation = @"inside block";
+  } forKey:@"key1" withObject:self];
+  
+  [context2 removeAllCallbacks];
+  
+  [context2 setObject:@"obj1" forKey:@"key1"];
+  
+  XCTAssertTrue([lastLocation isEqualToString:@"outside block"], @"Block was called");
+}
+
+- (void)test14{
+  INNControllerContext *context1 = [[INNControllerContext alloc]initWithName:@"base"];
+  
+  INNControllerContext *context2 = [[INNControllerContext alloc]initWithInnerContext:context1];
+  
+  __block NSString *lastLocation = @"outside block";
+  
+  [context2 registerCallback:^(id object) {
+    lastLocation = @"inside block";
+  } forKey:@"key1" withObject:self];
+  
+  [context2 removeCallbacksForObject:self];
+  
+  [context2 setObject:@"obj1" forKey:@"key1"];
+  
+  XCTAssertTrue([lastLocation isEqualToString:@"outside block"], @"Block was called");
+}
+
+- (void)test15{
+  NSObject *objOwner = [[NSObject alloc]init];
+  
+  INNControllerContext *context1 = [[INNControllerContext alloc]initWithName:@"base"];
+  
+  INNControllerContext *context2 = [[INNControllerContext alloc]initWithInnerContext:context1];
+  
+  __block NSString *lastLocation = @"outside block";
+  
+  [context2 registerCallback:^(id object) {
+    lastLocation = @"inside block";
+  } forKey:@"key1" withObject:objOwner];
+  
+  objOwner = nil;
+  
+  [context2 setObject:@"obj1" forKey:@"key1"];
+  
+  XCTAssertTrue([lastLocation isEqualToString:@"outside block"], @"Block was called");
+}
+
+- (void)test16{
+  NSArray *arraySetTest = @[@"one"];
+  
+  INNControllerContext *context1 = [[INNControllerContext alloc]initWithName:@"base"];
+  
+  [context1 setObject:arraySetTest forKey:@"arraySetTest"];
+  
+  XCTAssertTrue([[context1 objectForKey:@"arraySetTest"][0] isEqualToString:@"one"], @"Array Strong was set and retrieved correctly");
+}
 
 @end
 

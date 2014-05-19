@@ -15,4 +15,12 @@
 -(void) INN_setContext:(INNControllerContext *)context;
 -(INNControllerContext *)INN_context;
 
+#ifdef USE_NON_NAMESPACED_INNCONTROLLERCONTEXT_CATEGORY
+
+-(id) initWithContext:(INNControllerContext *)context;
+-(void) setContext:(INNControllerContext *)context;
+-(INNControllerContext *)context;
+
+#endif
+
 @end

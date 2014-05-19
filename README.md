@@ -6,18 +6,6 @@ ControllerContext solves the problem of passing data back and forth between iOS 
 
 The state of the art today for passing data between view controllers is to create properties or setters on the next view controller to display and to use the delegate pattern for passing data back to the originating view controller.  
 
-## Apple’s Perspective
-
-The following best practices come directly from Apple’s article “[Coordinating Efforts Between View Controllers].”
-
-1. A destination view controller’s references to app data should come from the source view controller unless the destination view controller represents a self-contained (and therefore self-configuring) view controller. 
-
-2. Perform as much configuration as possible using Interface Builder, rather than configuring your controller programmatically in your code. 
-
-3. Always use a delegate to communicate information back to other controllers. Your content view controller should never need to know the class of the source view controller or any controllers it doesn’t create. 
-
-4. Avoid unnecessary connections to objects external to your view controller. Each connection represents a dependency that makes it harder to change your app design.
-
 ## Problems with the approach
 
 - code is required for each data element carried forward
@@ -39,6 +27,18 @@ Imagine you have a login view controller that needs to return the userId.  The I
 After the user enters a username and password combination, the userId could be returned from a remote service call, validating the username and password.  The SignupVC sets the userId value in the INNControllerContext instance.  Since the same INNControllerContext instance is shared between the MainVC and SignupVC view controllers, the MainVC has access to the userId when viewWillAppear: fires.  This provides MainVC complete control over when to make UI changes based on the current values stored in the INNControllerContext instance.
 
 ![Example2](images/MainVCExample2.png)
+
+### Apple’s Best Practices
+
+The following best practices come directly from Apple’s article “[Coordinating Efforts Between View Controllers].”
+
+1. A destination view controller’s references to app data should come from the source view controller unless the destination view controller represents a self-contained (and therefore self-configuring) view controller. 
+
+2. Perform as much configuration as possible using Interface Builder, rather than configuring your controller programmatically in your code. 
+
+3. Always use a delegate to communicate information back to other controllers. Your content view controller should never need to know the class of the source view controller or any controllers it doesn’t create. 
+
+4. Avoid unnecessary connections to objects external to your view controller. Each connection represents a dependency that makes it harder to change your app design.
 
 ### Addressing Apple’s Best Practices with ControllerContext
 
@@ -200,6 +200,67 @@ The suggested location to retrieve values from the INNControllerContext is in th
 }
 ```
 
+## Callbacks when setting a value
+You can register a block of code that is executed when a setter is called on a ControllerContext instance.  
+
+```objective-c
+-(void) registerCallback:(BlockReference)block forKey:(NSString *)key withObject:(id)object;
+```
+
+The block is bound to the key stored in the ControllerContext instance.   
+
+The object passed in to the register method is usually the reference to the view controller.  The ControllerContext instance holds a weak reference to the passed-in object.  When the object is deallocated the registered block is automatically removed from the ControllerContext instance.  For convenience and to protect against circular references, the object passed in during registration is passed back to the block during execution.
+
+```objective-c
+[context registerCallback:^(id object) {     
+
+  // your callback code goes here 
+
+} forKey:@"key1" withObject:self];
+```
+
+Callbacks are a great way to trigger the sending of shared data between view controllers.  An example is when data is shared between two view controllers that are both visible at the same time.  An update to the data in one view controller will trigger a block of code to update the user interface in the second view controller.
+
+## Custom ControllerContext Classes
+
+ControllerContext supports the ability for your custom class to inherit from INNControllerContext and to setup @optional properties in the new class.  These optional properties are automagically implemented for you.  The data is stored in the ControllerContext instance in the same way as if you called the setObject:ForKey: method.
+
+```objective-c
+#import <Foundation/Foundation.h>
+#import "INNControllerContext.h"
+
+@protocol TestContextProperties <NSObject>
+
+//
+// must be declared as @optional 
+//
+@optional
+@property (copy) NSString *userId;
+@property (assign) NSInteger age;
+@property (copy) NSString *name;
+@end
+
+@interface TestContext1 : INNControllerContext<TestContextProperties>
+
+@end
+```
+
+The TestContext1 class below behaves like a regular class with properties defined.  
+
+```objective-c
+TestContext1 *context1 = [[TestContext1 alloc]initWithName:@"base"];
+
+[context1 setUserId:@"123435"];
+[context1 setAge:24];
+[context1 setName:@"Jane"];
+
+//
+// can retrieve object with objectForKey: method or by using the property methods
+//
+NSLog(@"userId: %@", [context1 objectForKey:@"userId"]);
+NSLog(@"userId: %@", context1.userId);
+```
+
 ## ControllerContext  Rules
 
 It’s important to know the rules behind how the ControllerContext manages its internal data.
@@ -232,7 +293,7 @@ Designed for iOS 6.0 and above, but I see no reason this shouldn't work with OSX
 
 ## Current Version
 
-Release 0.1.0
+Release 0.2.0
 
 ## Installation
 

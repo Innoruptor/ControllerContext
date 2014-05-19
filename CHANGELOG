@@ -1,0 +1,14 @@
+0.1.0
+------
+release: 14 May 2014
+
+- initial version
+
+0.2.0
+-----
+release: 19 May 2014
+
+- added support for properties in INNControllerContext
+- added callback blocks for when setters are called
+- added macro USE_NON_NAMESPACED_INNCONTROLLERCONTEXT_CATEGORY for turning in non-namespaced category methods
+- updated README.md to reflect updates
